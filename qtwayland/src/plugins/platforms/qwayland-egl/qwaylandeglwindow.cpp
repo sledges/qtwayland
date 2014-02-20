@@ -96,10 +96,12 @@ void QWaylandEglWindow::setGeometry(const QRect &rect)
         int current_width, current_height;
         wl_egl_window_get_attached_size(m_waylandEglWindow,&current_width,&current_height);
         if (current_width != sizeWithMargins.width() || current_height != sizeWithMargins.height()) {
+#if 0
             wl_egl_window_resize(m_waylandEglWindow, sizeWithMargins.width(), sizeWithMargins.height(), mOffset.x(), mOffset.y());
             mOffset = QPoint();
 
             m_resize = true;
+#endif
         }
     } else {
         m_waylandEglWindow = wl_egl_window_create(object(), sizeWithMargins.width(), sizeWithMargins.height());
